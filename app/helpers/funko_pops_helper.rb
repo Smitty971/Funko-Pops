@@ -1,0 +1,2 @@
+module FunkoPopsHelper
+end
