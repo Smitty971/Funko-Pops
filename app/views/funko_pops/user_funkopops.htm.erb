@@ -1,0 +1,6 @@
+<h1> My Funkos!</h1>
+<ul>
+  <% @funkopops.each do |funko| %>
+    <button><li><%= link_to funkopops.title, funko_pop_path(funkopops), class: 'funko_pop_title' %></li></button>
+  <% end %>
+</ul>

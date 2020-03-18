@@ -6,6 +6,7 @@ class CreateFunkoPops < ActiveRecord::Migration[6.0]
       t.string :series
       t.text :description
       t.references :user 
+      t.string :store
 
       t.timestamps
     end

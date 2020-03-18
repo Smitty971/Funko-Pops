@@ -1,0 +1,22 @@
+<h1><%= @funkopops.title %></h1>
+<h3> Series:  <%= @funkopops.series %></h3>
+<p>
+ <h4> Tags: </h4>
+  <% @book.tags.each do |tag| %>
+    <%= link_to tag.name, tag_path(tag) %>
+   <% end %> 
+</p>
+<p><% if @funkopops.image.exists? %>
+   <%= image_tag @book.image.url %></p> 
+    <% end %> 
+<p><%= @funkopops.description %></p>
+<% if logged_in? %>
+  <% if @funkopops.user_id == current_user.id %>
+    <button class="btn-danger"><%= link_to "Delete", funko_pop_path(@funkopops), method: :delete, data: {confirm: "Really delete the book?"} %></button>
+    <button class="btn-success"><%= link_to "Edit", edit_funko_pop_path(@funkopops) %></button>
+  <% end %>
+<% end %>
+<br><br>
+<button class="btn-block"><h3>Comments:  (<%= @funkopops.comments.size %>)</h3></button>
+<%= render partial: 'funko_pops/comment', collection: @funkopops.comments %>
+<%= render partial: 'comments/form' %>
