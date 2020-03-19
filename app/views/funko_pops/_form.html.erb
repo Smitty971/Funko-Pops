@@ -1,6 +1,6 @@
-<%= form_for @funkopop do |f| %>
+<%= form_for @funko_pop do |f| %>
   <ul>
-  <% @funkopop.errors.full_messages.each do |error| %>
+  <% @funko_pop.errors.full_messages.each do |error| %>
     <li><%= error %></li>
   <% end %>
   </ul>
@@ -21,8 +21,8 @@
      <%= f.text_field :tag_list %>
    </p> 
   <p>
-    <% if @funkopop.image.exists? %>
-       <%= image_tag @funkopop.image.url %><br/>
+    <% if @funko_pop.image.exists? %>
+       <%= image_tag @funko_pop.image.url %><br/>
      <% end %>
      <%= f.label :image, "Attach a New Image" %><br/>
      <%= f.file_field :image %>

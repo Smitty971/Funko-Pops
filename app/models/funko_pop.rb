@@ -1,5 +1,5 @@
 class FunkoPop < ApplicationRecord
-    has_many :users
+    belongs_to :users
     has_many :comments, through: :users
     has_many :comments, dependent: :destroy
     has_many :taggings, dependent: :destroy

@@ -2,28 +2,29 @@ class FunkoPopsController < ApplicationController
     before_action :current_user, only: [:new, :edit, :delete, :create] 
 
     def index
-        @funkopops = FunkoPop.all
+        @funko_pops = FunkoPop.all
     end
 
     def show
-        @funkopop = FunkoPop.find(params[:id])
+        @funko_pop = FunkoPop.find(params[:id])
+        redirect_to funko_pop_path(@funko_pop)
+        #binding.pry
         #nested forms 
         #@comment = @funkopop.comments.build
-        @comment = Comment.new
-        @comment.funko_pops_id = @funkopop.id
+        #@comment = Comment.new
+        #@comment.funkopops.id = @funko_pop.id
     end
 
     def new
-        @funkopop = FunkoPop.new
+        @funko_pop = FunkoPop.new
 
     end
 
     def create
-        #binding.pry
-        @funkopop = @current_user.funko_pop.build(funko_pops_params)
-        @funkopop.user_id = @current_user.id
-        if @funkopop.save
-            redirect_to funko_pop_path(@funkopop)
+        @funko_pop = @current_user.funko_pops.build(funko_pops_params)
+        if @funko_pop.save
+            binding.pry
+            redirect_to funko_pop_path(@funko_pop)
         else
             render :new
         end
@@ -32,23 +33,23 @@ class FunkoPopsController < ApplicationController
     
 
     def edit
-         @funkopop = FunkoPop.find(params[:id])
+         @funko_pop = FunkoPop.find(params[:id])
     end
 
     def update
-        @funkopop = FunkoPop.find(params[:id])
-        if authorize(@funkopop)
-        @funkopop.update(funko_pops_params)
-        flash.notice = "'#{@funkopops.title}' has been update!"
-        redirect_to funko_pop_path(@funkopops)
+        @funko_pop = FunkoPop.find(params[:id])
+        if authorize(@funko_pop)
+        @funko_pop.update(funko_pops_params)
+        flash.notice = "'#{@funko_pops.title}' has been update!"
+        redirect_to funko_pop_path(@funko_pop)
         else
           render :edit
         end
     end
 
     def destroy
-        @funkopop = FunkoPop.find(params[:id])
-        @funkopop.destroy
+        @funko_pop = FunkoPop.find(params[:id])
+        @funko_pop.destroy
         flash.notice = "'{funkopop.title}' has been deleted!"
         redirect_to funko_pops_path
     end
@@ -58,6 +59,6 @@ class FunkoPopsController < ApplicationController
 
 
     def funko_pops_params
-        params.require(:funkopop).permit(:series, :price, :title, :description, :user_id, :image)
+        params.require(:funko_pop).permit(:series, :price, :title, :description, :user_id, :image)
     end
 end

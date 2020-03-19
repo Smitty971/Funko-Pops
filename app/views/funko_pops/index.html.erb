@@ -1,6 +1,5 @@
 <h3> FUNKO POPS <h3>
 
-    <%= @funkopops.each do |funko| %>
-    <%= link_to funkopops.title, funko_pops_path(funkopops), class: 'funkopops_title' %>
-
+    <% @funko_pops.each do |funko| %>
+        <%= link_to funko.title, funko_pop_path(funko), class: 'funkopops_title' %>
     <% end %>

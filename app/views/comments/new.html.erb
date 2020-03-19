@@ -1,6 +1,6 @@
 
 <h3>Post a Comment</h3>
-<%= form_for [ @funkopops, @comment ] do |f| %>
+<%= form_for [ @funko_pops, @comment ] do |f| %>
 <ul>
   <% @comment.errors.full_messages.each do |error| %>
     <li><%= error %></li>

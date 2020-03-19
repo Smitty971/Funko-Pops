@@ -2,10 +2,11 @@ class CommentsController < ApplicationController
 
     def create 
         @comment = Comment.new(comment_params)
-        @comment.funko_pop_id = params [:book_id]
+        binding.pry
+        @comment.funkopops.id = params [:funkopops_id]
         @comment.save
         flash.notice = "Your comment has been added!"
-        redirect_to book_path(@comment.funko_pop)
+        redirect_to funko_pop_path(@comment.funko_pop)
     end
 
     private
