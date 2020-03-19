@@ -2,11 +2,14 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'funko_pops#welcome'
 
+  resources :users do 
+    resources :funko_pops
+  end
+
 
   resources :funko_pops do 
     resources :comments
-  end
-  resources :users
+  end 
   resources :tags
   
   #test

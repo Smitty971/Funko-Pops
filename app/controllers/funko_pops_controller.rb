@@ -7,7 +7,9 @@ class FunkoPopsController < ApplicationController
 
     def show
         @funko_pop = FunkoPop.find(params[:id])
-        redirect_to funko_pop_path(@funko_pop)
+        @comments = @funko_pop.comments.order('created_at DESC')
+        #exitbinding.pry
+        #redirect_to funko_pop_path(@funko_pop)
         #binding.pry
         #nested forms 
         #@comment = @funkopop.comments.build

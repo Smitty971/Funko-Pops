@@ -1,12 +1,10 @@
 class CommentsController < ApplicationController
 
-    def create 
-        @comment = Comment.new(comment_params)
-        binding.pry
-        @comment.funkopops.id = params [:funkopops_id]
-        @comment.save
-        flash.notice = "Your comment has been added!"
-        redirect_to funko_pop_path(@comment.funko_pop)
+    def create
+        @funko_pop = FunkoPop.find(params[:funko_pop_id]) 
+        @comment = @funko_pop.comments.create(comment_params)
+        @comment.user_id = current_user.id
+        redirect_to user_funko_pop_path(@funko_pop.user, @funko_pop), notice: "Your comment has been added!"
     end
 
     private

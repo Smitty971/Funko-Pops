@@ -1,0 +1,6 @@
+<% @comments.each do |comment| %>
+  <div>
+    <h4 style="color: #fff">Comment by: <%= comment.username %></h4>
+    <p class="comment" style="color: #fff"><%= comment.description %></p>
+  </div>
+<% end %>

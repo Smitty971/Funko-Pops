@@ -1,0 +1,22 @@
+
+<h3>Post a Comment</h3>
+<%# <ul> %>
+  <%# <% if @comment.errors.any? %>
+    <%# <% @comment.errors.full_messages.each do |error| %> 
+      <%# <li><%= error %>
+    <%# <% end %> 
+  <%# <% end %> 
+<%# </ul> %>
+<%= form_for ([@funko_pop, @funko_pop.comments.build]) do |f| %>
+  <p>
+    <%= f.label :username %><br/>
+    <%= f.text_field :username %>
+  </p>
+  <p>
+    <%= f.label :description %><br/>
+    <%= f.text_area :description %>
+  </p>
+  <p>
+    <%= f.submit 'Submit' %>
+  </p>
+<% end %>
