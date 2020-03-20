@@ -2,7 +2,11 @@ class FunkoPopsController < ApplicationController
     before_action :current_user, only: [:new, :edit, :delete, :create] 
 
     def index
-        @funko_pops = FunkoPop.all
+        @funko_pops = current_user.funko_pops
+    end
+
+    def all_funko_pops
+        @funko_pops = FunkoPop.ordered
     end
 
     def show
@@ -25,8 +29,7 @@ class FunkoPopsController < ApplicationController
     def create
         @funko_pop = @current_user.funko_pops.build(funko_pops_params)
         if @funko_pop.save
-            binding.pry
-            redirect_to funko_pop_path(@funko_pop)
+            redirect_to funko_pop_path(@funko_pop), notice: "#{@funko_pop.title}, has been created"
         else
             render :new
         end
@@ -40,19 +43,24 @@ class FunkoPopsController < ApplicationController
 
     def update
         @funko_pop = FunkoPop.find(params[:id])
-        if authorize(@funko_pop)
-        @funko_pop.update(funko_pops_params)
-        flash.notice = "'#{@funko_pops.title}' has been update!"
-        redirect_to funko_pop_path(@funko_pop)
+        if @funko_pop.update(funko_pops_params)
+            flash.notice = "The FunkoPop has been updated!"
+            redirect_to funko_pop_path(@funko_pop)
         else
           render :edit
         end
     end
 
+    def users_funko_pop
+        @user_id = current_user.id
+        @funko_pop = FunkoPop.users_funko_pop(@user_id).ordered 
+      end
+
+
     def destroy
         @funko_pop = FunkoPop.find(params[:id])
+        flash.notice = "'#{@funko_pop.title}' has been deleted!"
         @funko_pop.destroy
-        flash.notice = "'{funkopop.title}' has been deleted!"
         redirect_to funko_pops_path
     end
  
@@ -61,6 +69,6 @@ class FunkoPopsController < ApplicationController
 
 
     def funko_pops_params
-        params.require(:funko_pop).permit(:series, :price, :title, :description, :user_id, :image)
+        params.require(:funko_pop).permit(:series, :price, :title, :tag_list, :description, :user_id, :image)
     end
 end

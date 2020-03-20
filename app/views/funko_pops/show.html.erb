@@ -1,14 +1,13 @@
 <h1><%= @funko_pop.title %></h1>
 <h3> Series:  <%= @funko_pop.series %></h3>
-<%# <p> %>
- <%# <h4> Tags: </h4>
-  <% @funko_pop.tags.each do |tag| %>
-    <%# <%= link_to tag.name, tag_path(tag) %>
-   <%# <% end %>
-<%# </p> %>
-<%# <p><% if @funko_pop.image.exists? %> 
-   <%# <%= image_tag @funko_pop.image.url %>  
-    <%# <% end %> 
+ <p>
+  <h4> Tags: <span><%= @funko_pop.tag_list %></span> </h4>
+</p>
+<p>
+    <% if @funko_pop.image.exists? %> 
+        <%= image_tag @funko_pop.image.url %>  
+    <% end %> 
+</p>
 <p><%= @funko_pop.description %></p>
 <% if logged_in? %>
   <% if @funko_pop.user_id == current_user.id %>

@@ -20,4 +20,6 @@ Rails.application.routes.draw do
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create'
   
+  get '/users_funko_pop' => 'funko_pop#users_funko_pop', :as => "users_funko_pop"
+  get '/all_funko_pops', to: "funko_pops#all_funko_pops"
 end

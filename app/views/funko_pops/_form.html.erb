@@ -5,22 +5,22 @@
   <% end %>
   </ul>
   <p>
-    <%= f.label :title %><br />
+    <%= f.label :title %><br/>
     <%= f.text_field :title %>
   </p>
   <p>
-    <%= f.label :series %><br />
+    <%= f.label :series %><br/>
     <%= f.text_field :series %>
   </p>
   <p>
-    <%= f.label :description %><br />
+    <%= f.label :description %><br/>
     <%= f.text_area :description %>
   </p>
-   <p>
-    <%= f.label :tag_list %><br />
-     <%= f.text_field :tag_list %>
-   </p> 
-  <p>
+    <p>
+    <%= f.label :tag_list %><br/> 
+      <%= f.text_field :tag_list %> 
+   </p>  
+   <p> 
     <% if @funko_pop.image.exists? %>
        <%= image_tag @funko_pop.image.url %><br/>
      <% end %>

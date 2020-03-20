@@ -7,11 +7,45 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      .nav {
+        display: flex;
+        list-style-type: none;
+        justify-content: space-between;
+        padding: 40px 75px 0 75px;
+        margin-bottom: 50px;
+      }
+
+    </style>
+
   </head>
 
-  <body>
-    <div>
-    </div>
+  <body style="">
+    <header class="header">
+      <ul class="nav" style="display: flex; list-style-type:none; justify-content:space-between; padding:0 20px:">
+          <% if logged_in? %>
+              <li><%= link_to "Add a Funko", new_funko_pop_path, class: "new_funko_pop" %></li>
+              <li><%= link_to "My Funkos", funko_pops_path, class: "new_funko_pop" %></li>
+              <li><%= link_to "Funko List", all_funko_pops_path %></li>
+              <li><%= link_to "Tag List", tags_path %></li>
+              <li><%= link_to "Log Out", logout_path %></li>
+          <% else %>
+              <li><%= link_to "Sign Up", signup_path %></li>
+              <li><%= link_to "Log In", login_path %></li>
+          <% end %>
+        </ul>
+    </header>
      <p class="flash"><%= flash.notice %></p>
     <%= yield %>
   </body>
