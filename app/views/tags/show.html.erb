@@ -1,0 +1,6 @@
+<h1>FunkoPops Tagged with <%= @tag.name %></h1>
+<ul>
+  <% @tag.funko_pops.each do |funko| %>
+    <button><li><%= link_to funko.title, funko_pop_path(funko) %></li></button>
+  <% end %>
+</ul>

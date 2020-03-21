@@ -1,0 +1,7 @@
+
+<button class="btn-block"><h2>Tag List</h2></button>
+<br><br><br>
+<% @tags.each do |tag| %>
+  <button><%= link_to tag.name, tag_path(tag) %></button>
+<% end %>
+	
