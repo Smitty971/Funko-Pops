@@ -1,8 +1,11 @@
 class FunkoPopsController < ApplicationController
-    before_action :current_user, only: [:new, :edit, :delete, :create] 
+    before_action :current_user, only: [:new, :edit, :delete, :create]
+    before_action :require_login, only: [:new, :edit, :delete, :index]
+
 
     def index
         @funko_pops = current_user.funko_pops
+        #@funko_pops = FunkoPop.all
     end
 
     def all_funko_pops
@@ -12,22 +15,15 @@ class FunkoPopsController < ApplicationController
     def show
         @funko_pop = FunkoPop.find(params[:id])
         @comments = @funko_pop.comments.order('created_at DESC')
-        #exitbinding.pry
-        #redirect_to funko_pop_path(@funko_pop)
-        #binding.pry
-        #nested forms 
-        #@comment = @funkopop.comments.build
-        #@comment = Comment.new
-        #@comment.funkopops.id = @funko_pop.id
     end
 
     def new
-        @funko_pop = FunkoPop.new
-
+        #@funko_pop = FunkoPop.new
+        @funko_pop = current_user.funko_pops.build
     end
 
     def create
-        @funko_pop = @current_user.funko_pops.build(funko_pops_params)
+        @funko_pop = current_user.funko_pops.build(funko_pops_params)
         if @funko_pop.save
             redirect_to funko_pop_path(@funko_pop), notice: "#{@funko_pop.title}, has been created"
         else

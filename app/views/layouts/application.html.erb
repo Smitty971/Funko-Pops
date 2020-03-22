@@ -33,7 +33,7 @@
 
   <body style="">
     <header class="header">
-      <ul class="nav" style="display: flex; list-style-type:none; justify-content:space-between; padding:0 20px:">
+      <ul class="nav" >
           <% if logged_in? %>
               <li><%= link_to "Add a Funko", new_funko_pop_path, class: "new_funko_pop" %></li>
               <li><%= link_to "My Funkos", funko_pops_path, class: "new_funko_pop" %></li>

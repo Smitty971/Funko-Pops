@@ -22,4 +22,6 @@ Rails.application.routes.draw do
   
   get '/users_funko_pop' => 'funko_pop#users_funko_pop', :as => "users_funko_pop"
   get '/all_funko_pops', to: "funko_pops#all_funko_pops"
+
+  get '/auth/:provider/callback', to: 'user_sessions#create'
 end
