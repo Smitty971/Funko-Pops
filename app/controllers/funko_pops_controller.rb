@@ -5,7 +5,6 @@ class FunkoPopsController < ApplicationController
 
     def index
         @funko_pops = current_user.funko_pops
-        #@funko_pops = FunkoPop.all
     end
 
     def all_funko_pops
@@ -18,7 +17,6 @@ class FunkoPopsController < ApplicationController
     end
 
     def new
-        #@funko_pop = FunkoPop.new
         @funko_pop = current_user.funko_pops.build
     end
 

@@ -1,7 +1,10 @@
 <h1><%= @funko_pop.title %></h1>
 <h3> Series:  <%= @funko_pop.series %></h3>
- <p>
+<p>
   <h4> Tags: <span><%= @funko_pop.tag_list %></span> </h4>
+</p>
+<p>
+<h3> Price: <%= @funko_pop.price %>
 </p>
 <p>
     <% if @funko_pop.image.exists? %> 
