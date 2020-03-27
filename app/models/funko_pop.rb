@@ -5,7 +5,7 @@ class FunkoPop < ApplicationRecord
     has_many :taggings, dependent: :destroy
     has_many :tags, through: :taggings, dependent: :destroy
     has_attached_file :image
-    validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpg", "image/png"]
+    validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png"]
     scope :ordered, -> { order('created_at DESC') }
 
     def tag_list
