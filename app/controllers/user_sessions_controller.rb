@@ -7,12 +7,12 @@ class UserSessionsController < ApplicationController
       if request.env["omniauth.auth"]
         @user = User.find_by(github_uid: request.env["omniauth.auth"]["uid"])
           if @user.nil?
-            @user = User.create(username: request.env["omniauth.auth"]["info"]["nickname"], github_uid: request.env["omniauth.auth"]["uid"], password: "github")
+            @user = User.create(username: request.env["omniauth.auth"]["info"]["nickname"], github_uid: request.env["omniauth.auth"]["uid"], password: "github" )
           end
-            log_in(@user)
-            redirect_to funko_pops_path
-         else
-            @user = User.find_by(username: params[:username])
+         log_in(@user)
+         redirect_to funko_pops_path
+      else
+         @user = User.find_by(username: params[:username])
          if !@user
             flash.notice = "Account not found. Please try again."
             render :new

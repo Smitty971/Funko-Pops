@@ -1,5 +1,20 @@
 <h3 style="margin-bottom: 20px;"> All FUNKO POPS <h3>
 
+<%= form_tag(funko_pops_path(@funko_pops), method: :get) do %>
+<%= label_tag(:search, "What FunkoPop are you looking for:") %>
+<%= text_field_tag(:search, params[:search]) %>
+<%= submit_tag("Search", :title => nil) %>
+<% end %>
+
+# check format and syntax of form_tag
+# next steps:
+    #where is the form going to be submitted to?
+    #what controller action and route will be involved and do they currently exist?
+
+#other homework:
+    # blog about what has_secure_password does
+    # fix validation errors for forms
+
 <% @funko_pops.each do |funko| %>
     <div class="funko-pop">
         <%= link_to funko.title, funko_pop_path(funko), class: 'funkopops_title' %>

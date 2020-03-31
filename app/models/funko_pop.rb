@@ -24,4 +24,17 @@ class FunkoPop < ApplicationRecord
         where(user_id: user)
     end
 
+    def self.search(search)
+        if search
+            funko_pop = FunkoPop.find_by(title: search)
+            if funko_pop
+                self.where(funko_pop_id: title)
+            else
+                FunkoPop.all
+            end
+        else
+            FunkoPop.all
+        end
+    end
+
 end

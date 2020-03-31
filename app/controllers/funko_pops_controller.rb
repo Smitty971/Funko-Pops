@@ -8,7 +8,8 @@ class FunkoPopsController < ApplicationController
     end
 
     def all_funko_pops
-        @funko_pops = FunkoPop.ordered
+        #@funko_pops = FunkoPop.ordered
+        @funko_pops = FunkoPop.search(params[:search])
     end
 
     def show
@@ -57,12 +58,12 @@ class FunkoPopsController < ApplicationController
         @funko_pop.destroy
         redirect_to funko_pops_path
     end
- 
+
     private
 
 
 
     def funko_pops_params
-        params.require(:funko_pop).permit(:series, :price, :title, :tag_list, :description, :user_id, :image)
+        params.require(:funko_pop).permit(:series, :price, :title, :tag_list, :search,  :description, :user_id, :image)
     end
 end
