@@ -9,7 +9,7 @@ class FunkoPopsController < ApplicationController
 
     def all_funko_pops
         #@funko_pops = FunkoPop.ordered
-        @funko_pops = FunkoPop.search(params[:search])
+        @funko_pops = FunkoPop.search(params[:search].strip)
     end
 
     def show

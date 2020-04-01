@@ -27,9 +27,9 @@ class FunkoPop < ApplicationRecord
     def self.search(search)
 
         funko_array = []
-        if search
-            funko_pop = self.find_by(title: search)
+        if search.length > 0 
             #binding.pry
+            funko_pop = self.find_by(title: search)
             if funko_pop
                 funko_array << funko_pop
                 return funko_array
