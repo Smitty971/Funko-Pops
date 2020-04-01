@@ -25,15 +25,19 @@ class FunkoPop < ApplicationRecord
     end
 
     def self.search(search)
+
+        funko_array = []
         if search
-            funko_pop = FunkoPop.find_by(title: search)
+            funko_pop = self.find_by(title: search)
+            #binding.pry
             if funko_pop
-                self.where(funko_pop_id: title)
+                funko_array << funko_pop
+                return funko_array
             else
-                FunkoPop.all
+                self.all
             end
         else
-            FunkoPop.all
+            self.all
         end
     end
 

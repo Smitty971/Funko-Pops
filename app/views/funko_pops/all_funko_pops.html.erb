@@ -1,6 +1,6 @@
 <h3 style="margin-bottom: 20px;"> All FUNKO POPS <h3>
 
-<%= form_tag(funko_pops_path(@funko_pops), method: :get) do %>
+<%= form_tag all_funko_pops_path, method: :get do %>
 <%= label_tag(:search, "What FunkoPop are you looking for:") %>
 <%= text_field_tag(:search, params[:search]) %>
 <%= submit_tag("Search", :title => nil) %>
